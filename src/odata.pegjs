@@ -275,7 +275,7 @@ filterExpr                  =
                                 }
                               }
 
-booleanFunctions2Args       = "substringof" / "endswith" / "startswith" / "IsOf"
+booleanFunctions2Args       = "substringof" / "endswith" / "startswith" / "IsOf" / "contains"
 
 booleanFunc                 =  f:booleanFunctions2Args "(" arg0:part "," WSP? arg1:part ")" {
                                     return {

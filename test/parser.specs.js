@@ -1,3 +1,5 @@
+
+
 var assert = require('assert');
 var parser = require("../lib");
 
@@ -158,6 +160,21 @@ describe('odata.parser grammar', function () {
 
         assert.equal(ast.$filter.args[1].type, "property");
         assert.equal(ast.$filter.args[1].name, "Data");
+
+    });
+
+    it('should parse startswith $filter', function () {
+
+        var ast = parser.parse("$filter=contains(Data, 'nginx')");
+
+        assert.equal(ast.$filter.type, "functioncall");
+        assert.equal(ast.$filter.func, "contains");
+
+        assert.equal(ast.$filter.args[0].type, "property");
+        assert.equal(ast.$filter.args[0].name, "Data");
+
+        assert.equal(ast.$filter.args[1].type, "literal");
+        assert.equal(ast.$filter.args[1].value, "nginx");
 
     });
 
